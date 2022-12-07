@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
+
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
   def index
-    @articles = Article.all
+    @articles = Article.all #vola sa metoda na model?
   end
 
   def show
@@ -14,7 +17,6 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    puts "Vypis skusky: #{@article.body.length}"
     if @article.save
       redirect_to @article
     else
@@ -45,7 +47,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status) #ktore parametre su povolene
     end
 
 end
