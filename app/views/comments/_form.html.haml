@@ -1,8 +1,8 @@
 = form_with model: [ @article, @article.comments.build ] do |form|
   %p
-    = form.label :commenter
+    = form.label 'Commenter\'s user name'
     %br/
-    = form.text_field :commenter
+    = form.text_field :user_name
   %p
     = form.label :body
     %br/

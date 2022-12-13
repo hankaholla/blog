@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
 
   belongs_to :article, optional: true
   belongs_to :user
+  has_many :poly_likes, as: :likeable
 
   # VALID_STATUSES = ['public', 'private', 'archived']
 

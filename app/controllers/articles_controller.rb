@@ -16,6 +16,8 @@ class ArticlesController < ApplicationController
 
   def create
     @user = User.find_by(user_name: article_params[:user_name])
+    @article = Article.find(params[:article_id])
+
     puts @user.inspect
     @article = Article.new(title: article_params[:title], body: article_params[:body], 
                           status: article_params[:status], user_id: @user.id)
@@ -35,8 +37,10 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-
-    if @article.update(article_params)
+    @user = User.find_by(user_name: article_params[:user_name])
+    
+    if @article.update(title: article_params[:title], body: article_params[:body], 
+                       status: article_params[:status], user_id: @user.id)
       redirect_to @article
     else
       render :edit, status: :unprocessable_entity
