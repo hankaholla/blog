@@ -8,7 +8,6 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    # user = User.find(@article.user_id)
   end
 
   def new
@@ -16,9 +15,12 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
-    puts article_params[:user_id]
-    @article.user_id = User.find_by(user_name: article_params[:user_id]).id
+    @user = User.find_by(user_name: article_params[:user_name])
+    puts @user.inspect
+    @article = Article.new(title: article_params[:title], body: article_params[:body], 
+                          status: article_params[:status], user_id: @user.id)
+    
+    # @article.user_id = @user.id
 
     if @article.save
       redirect_to @article
