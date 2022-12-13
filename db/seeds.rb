@@ -2,6 +2,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+
+
 10.times do 
   count = User.count
   random_offset = rand(count)
@@ -11,6 +13,23 @@
     body: Faker::Lorem.paragraph(sentence_count: 8, supplemental: true, random_sentences_to_add: 4),
     status: 'public',
     user_id: random_user.id
+  )
+end
+
+20.times do 
+  count = User.count
+  random_offset = rand(count)
+  random_user = User.offset(random_offset).first
+
+  count2 = Article.count
+  random_offset2 = rand(count2)
+  random_article = Article.offset(random_offset2).first
+
+  Comment.create(
+    body: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true, random_sentences_to_add: 4),
+    status: 'public',
+    user_id: random_user.id,
+    article_id: random_article.id
   )
 end
 
