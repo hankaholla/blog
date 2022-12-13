@@ -19,6 +19,9 @@
     %br/
     = form.select :status, ['public', 'private', 'archived'], selected: 'public'
 
+  %div 
+    = form.label :user_name
+    = form.text_field :user_name
   %div
     = form.submit
   

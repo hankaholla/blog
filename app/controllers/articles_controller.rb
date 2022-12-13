@@ -3,11 +3,12 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
-    @articles = Article.all #vola sa metoda na model?
+    @articles = Article.all 
   end
 
   def show
     @article = Article.find(params[:id])
+    # user = User.find(@article.user_id)
   end
 
   def new
@@ -16,6 +17,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    puts article_params[:user_id]
+    @article.user_id = User.find_by(user_name: article_params[:user_id]).id
 
     if @article.save
       redirect_to @article
@@ -47,7 +50,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status) #ktore parametre su povolene
+      params.require(:article).permit(:title, :body, :status, :user_name) #ktore parametre su povolene
     end
 
 end

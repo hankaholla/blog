@@ -7,6 +7,12 @@
         turbo_confirm: "Are you sure?"                   |
       }                                                  |
 
+%h2 Author of this article: 
+-# = @article.user.user_name
+-# = puts @article.user.inspect
+= link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
+
+
 %h2 Comments
 = render @article.comments
 %h2 Add a comment:
