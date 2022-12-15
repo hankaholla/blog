@@ -1,3 +1,6 @@
+= puts user.first_name
+= puts article.user_id
+
 = form_with model: article do |form|
   %div
     = form.label :title 
@@ -20,8 +23,9 @@
     = form.select :status, ['public', 'private', 'archived'], selected: 'public'
 
   %div 
-    = form.label 'Author\'s user name'
-    = form.text_field :user_name
+    = form.label :user_id, 'Author\'s first name'
+    - selected_user = users.find{ |user| user['id'] == article.user_id}
+    = form.select :user_id, options_for_select(users, selected: selected_user['first_name'])
   %div
     = form.submit
   
