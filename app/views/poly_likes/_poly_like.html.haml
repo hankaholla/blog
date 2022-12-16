@@ -1,0 +1,5 @@
+%p
+    -# = PolyLike.where(:likeable_type => "Article").where(:likeable_id => poly_like.likeable.id).count
+    = likes.size
+    %strong people like this
+    
