@@ -33,9 +33,11 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    @user = User.find(@article.user_id)
-    # @users = User.all.map { |u|  [u.first_name, u.id]}
-    @users = User.all.as_json
+    users_array = User.all.map { |u|  [u.first_name, u.id]}
+    @users = users_array.map{ |n, i| {"first_name": n, "id": i}}
+    # data.map { |f, l, g|  { :first_name => f, :last_name => l, :gender => g } }
+    # @user = User.find(@article.user_id)
+    # @users = User.all.as_json
   end
 
   def update
