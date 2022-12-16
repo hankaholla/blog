@@ -7,6 +7,8 @@
     %strong Comment:
     = comment.body
 
+  = render 'poly_likes/poly_like', likes: comment.poly_likes
+
   %p
     = link_to "Destroy Comment", [comment.article, comment], data: { |
         turbo_method: :delete,                                       |

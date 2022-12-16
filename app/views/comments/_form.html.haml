@@ -2,7 +2,7 @@
   %p
     = form.label 'Commenter\'s name'
     %br/
-    = form.select :user_id, options_for_select(users.collect{|u| [u[:first_name], u[:id]]})
+    = form.select :user_id, options_for_select(users)
   %p
     = form.label :body
     %br/

@@ -58,7 +58,8 @@ class ArticlesController < ApplicationController
 
   def all_users_form
     users_array = User.all.map { |u|  [u.first_name, u.id]}
-    users_array.map{ |n, i| {"first_name": n, "id": i}}
+    users_array = users_array.map{ |n, i| {"first_name": n, "id": i}}
+    users_array = users_array.collect{|u| [u[:first_name], u[:id]]}
   end
 
 end

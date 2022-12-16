@@ -6,8 +6,15 @@ Rails.application.routes.draw do
   root "articles#index"
 
   resources :users
+
   resources :articles do
-    resources :comments
+    
+    resources :poly_likes
+
+    resources :comments do
+      resources :poly_likes
+    end
+
   end
 
 end

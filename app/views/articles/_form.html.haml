@@ -24,10 +24,10 @@
 
   %div 
     = form.label :user_id, 'Author\'s first name'
-    - selected_user = users.select{ |user| break user[:first_name] if user[:id] == article.user_id}     #ako toto vyriesit bez hardkodu
-    - puts selected_user
-    - options_users = users.collect{|u| [u[:first_name], u[:id]]}
-    = form.select :user_id, options_for_select(options_users, selected: selected_user)
+    -# - selected_user = users.select{ |user| break user[:first_name] if user[:id] == article.user_id}     #ako toto vyriesit bez hardkodu
+    -# - puts selected_user
+    -# - options_users = users.collect{|u| [u[:first_name], u[:id]]}
+    = form.select :user_id, options_for_select(users) #, selected: selected_user)
   %div
     = form.submit
   

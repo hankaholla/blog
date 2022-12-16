@@ -12,6 +12,10 @@
 %h2 Author of this article: 
 = link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
 
+%p User that wants to like this article:
+= select_tag :user_id, options_for_select(@users)
+
+%h2= link_to "Like this article", article_poly_likes_path(@article), method: :post
 
 %h2 Comments
 = render @article.comments
