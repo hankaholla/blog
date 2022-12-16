@@ -12,17 +12,11 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @users = all_users_form
   end
 
   def create
-    @user = User.find_by(user_name: article_params[:user_name])
-    @article = Article.find(params[:article_id])
-
-    puts @user.inspect
-    @article = Article.new(title: article_params[:title], body: article_params[:body], 
-                          status: article_params[:status], user_id: @user.id)
-    
-    # @article.user_id = @user.id
+    @article = Article.new(article_params)
 
     if @article.save
       redirect_to @article
@@ -33,8 +27,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    users_array = User.all.map { |u|  [u.first_name, u.id]}
-    @users = users_array.map{ |n, i| {"first_name": n, "id": i}}
+    @users = all_users_form
     # data.map { |f, l, g|  { :first_name => f, :last_name => l, :gender => g } }
     # @user = User.find(@article.user_id)
     # @users = User.all.as_json
@@ -42,7 +35,6 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    # @user = User.find_by(user_name: article_params[:user_name])
     
     if @article.update(article_params)
       redirect_to @article
@@ -59,8 +51,13 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body, :status, :user_id) #ktore parametre su povolene
-    end
+  def article_params
+    params.require(:article).permit(:title, :body, :status, :user_id) #ktore parametre su povolene
+  end
+
+  def all_users_form
+    users_array = User.all.map { |u|  [u.first_name, u.id]}
+    users_array.map{ |n, i| {"first_name": n, "id": i}}
+  end
 
 end
