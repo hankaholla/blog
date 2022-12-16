@@ -1,8 +1,8 @@
 = form_with model: [ @article, @article.comments.build ] do |form|
   %p
-    = form.label 'Commenter\'s user name'
+    = form.label 'Commenter\'s name'
     %br/
-    = form.text_field :user_name
+    = form.select :user_id, options_for_select(users.collect{|u| [u[:first_name], u[:id]]})
   %p
     = form.label :body
     %br/
