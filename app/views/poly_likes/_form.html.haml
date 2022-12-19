@@ -1,0 +1,9 @@
+= form_with model: [ article, article.poly_likes.build ] do |form|
+  %p 
+    = form.label 'User that wants to like this article:'
+    = form.select :user_id, options_for_select(users)
+  %p
+    = form.hidden_field :likeable_id, value: article.id
+    = form.hidden_field :likeable_type, value: "Article"
+  %p
+    = form.submit "Like"

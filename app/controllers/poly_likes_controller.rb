@@ -13,7 +13,7 @@ class PolyLikesController < ApplicationController
 
     private
     def like_params
-        params.require(:like).permit(:user_id, :likeable_id, :likeable_type)
+        params.require(:poly_like).permit(:user_id, :likeable_id, :likeable_type)
     end
     
   end

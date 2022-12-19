@@ -2,6 +2,7 @@
 %p= @article.body
 
 = render 'poly_likes/poly_like', likes: @article.poly_likes
+
 %ul
   %li= link_to "Edit", edit_article_path(@article)
   %li= link_to "Destroy", article_path(@article), data: { |
@@ -12,13 +13,14 @@
 %h2 Author of this article: 
 = link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
 
-%p User that wants to like this article:
-= select_tag :user_id, options_for_select(@users)
+-# %p User that wants to like this article:
+-# = select_tag :user_id, options_for_select(@users)
 
-%h2= link_to "Like this article", article_poly_likes_path(@article), method: :post
+-# %h2= link_to "Like this article", article_poly_likes_path(@article), method: :post
+= render 'poly_likes/form', article: @article, users: @users
 
 %h2 Comments
 = render @article.comments
 %h2 Add a comment:
-=render 'comments/form', users: @users
+= render 'comments/form', users: @users
 
