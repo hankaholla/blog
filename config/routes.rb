@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :articles do
-    
-    resources :poly_likes
 
     resources :comments do
       resources :poly_likes
     end
+
+    resources :poly_likes
 
   end
 

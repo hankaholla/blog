@@ -5,7 +5,13 @@ class PolyLikesController < ApplicationController
         @like = current_user.poly_likes.new(like_params)
         
         if @like.save
-            redirect_to @like.likeable
+            if @like.likeable_type == "Article"
+                redirect_to @like.likeable
+            else 
+                parent_comment = Comment.find(like_params[:likeable_id])
+                parent_article = Article.find(parent_comment.article_id)
+                redirect_to parent_article
+            end
         else
             render @like.likeable, status: :unprocessable_entity
         end

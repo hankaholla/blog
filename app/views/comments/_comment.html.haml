@@ -10,6 +10,11 @@
   = render 'poly_likes/poly_like', likes: comment.poly_likes
 
   %p
+    -# polymorphic_url([blog, post], anchor: 'my_anchor')
+    -# # => "http://example.com/blogs/1/posts/1#my_anchor"
+    -# = render 'poly_likes/form', likeable_model: comment.article, users: @users, type: "Comment"
+    = render partial: 'poly_likes/form', locals: {likeable_model: comment.article, users: @users, type: "Comment"}
+  %p
     = link_to "Destroy Comment", [comment.article, comment], data: { |
         turbo_method: :delete,                                       |
         turbo_confirm: "Are you sure?"                               |
