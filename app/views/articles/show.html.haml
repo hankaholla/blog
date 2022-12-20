@@ -17,7 +17,7 @@
 -# = select_tag :user_id, options_for_select(@users)
 
 -# %h2= link_to "Like this article", article_poly_likes_path(@article), method: :post
-= render 'poly_likes/form', likeable_model: @article, users: @users, type: "Article"
+= render 'poly_likes/form', likeable_model: @article, users: @users, record_type: "Article", record_id: @article.id
 
 %h2 Comments
 = render @article.comments
