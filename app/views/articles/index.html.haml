@@ -1,13 +1,19 @@
-%h1 Articles
+%div.container.pt-5.position-absolute.top-0.start-50.translate-middle-x
+  %h1 Welcome to my blog!
+  %p.small 
+    This blog has 
+    %mark #{Article.public_count} 
+    articles and counting!
 
-%button.btn.btn-primary{:type => "button"} Primary
-
-Our blog has #{Article.public_count} articles and counting!
-
-%ul
-  - @articles.each do |article|
-    - unless article.archived?
-      %li
-        = link_to article.title, article
+%div.container.position-absolute.top-50.start-50.translate-middle 
+  %ul.list-group
+    - @articles.each do |article|
+      - unless article.archived?
+        %li.list-group-item.list-group-item-action
+          = link_to article.title, article
         
-= link_to "New Article", new_article_path
+-# = link_to "New Article", new_article_path
+
+%div.container.position-absolute.bottom-0.start-50.translate-middle-x
+  %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
+  

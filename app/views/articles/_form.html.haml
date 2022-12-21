@@ -2,14 +2,14 @@
 -# = puts article.user_id
 
 = form_with model: article do |form|
-  %div
-    = form.label :title 
+  %div.mb-3.mt-3.ms-5
+    = form.label :title, {class: "form-label pl-5"}
     %br/
     = form.text_field :title
     - article.errors.full_messages_for(:title).each do |message|
       %div= message
 
-  %div
+  %div.mb-3.ms-5
     = form.label :body
     %br/
     = form.text_area :body
@@ -17,12 +17,12 @@
     - article.errors.full_messages_for(:body).each do |message| 
       %div= message 
 
-  %div
+  %div.mb-3.ms-5
     = form.label :status 
     %br/
-    = form.select :status, ['public', 'private', 'archived'], selected: 'public'
+    = form.select :status, ['public', 'private', 'archived'], {}, { class: "form form-group form-control" }
 
-  %div 
+  %div.mb-3.ms-5
     = form.label :user_id, 'Author\'s first name'
     -# - selected_user = users.select{ |user| break user[:first_name] if user[:id] == article.user_id}     #ako toto vyriesit bez hardkodu
     -# - options_users = users.collect{|u| [u[:first_name], u[:id]]}
@@ -30,7 +30,7 @@
 
     -# - selected_user = users.find{ |u| u[1] == article.user_id}
     -# - selected_index = users.index(selected_user)
-    = form.select :user_id, options_for_select(users, selected: article.user_id)
-  %div
+    = form.select :user_id, options_for_select(users, selected: article.user_id, )
+  %div.mb-3.ms-5
     = form.submit
   
