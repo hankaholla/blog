@@ -3,5 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 
-require("bootstrap/dist/js/bootstrap")
+// require("bootstrap/dist/js/bootstrap")
 
