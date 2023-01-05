@@ -51,6 +51,9 @@ gem "haml"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.4'
 
+gem "devise" 
+gem "cancancan"
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
