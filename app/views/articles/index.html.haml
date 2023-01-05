@@ -5,6 +5,17 @@
     %mark #{Article.public_count} 
     articles and counting!
 
+
+%div
+  - if user_signed_in? 
+    %div 
+      Welcome #{current_user.first_name}
+    = button_to "Sign out", destroy_user_session_path, method: :delete 
+  - else
+    = button_to "Sign in", new_user_session_path
+    = link_to "Sign up", new_user_registration_path
+
+
 %div.container.position-absolute.top-50.start-50.translate-middle 
   %ul.list-group
     - @articles.each do |article|
