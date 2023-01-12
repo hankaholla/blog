@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   # http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  authorize_resource
 
   def index
     @articles = Article.all 
@@ -29,17 +30,20 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @users = all_users_form
+
     # @user = User.find(@article.user_id)
   end
 
   def update
     @article = Article.find(params[:id])
-    
-    if @article.update(article_params)
-      redirect_to @article
-    else
-      render :edit, status: :unprocessable_entity
-    end
+
+    puts "edituje user s id: #{current_user.id}"
+    # can? :update, @article # => true
+      if @article.update(article_params)
+        redirect_to @article
+      else
+        render :edit, status: :unprocessable_entity
+      end
   end
 
   def destroy

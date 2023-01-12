@@ -4,7 +4,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    
+
+    can :read, Article
+
+    return unless user.present?
+
+    can :read, Article, user: user
+    can :update, Article, user: user
+    can :edit, Article, user: user
   end
 end
 

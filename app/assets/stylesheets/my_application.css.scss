@@ -1,3 +1,15 @@
 h1 {
-    color: rgb(112, 166, 112);
+    color: rgb(111, 166, 228);
   }
+.fakeimg {
+  height: 250px;
+  width: 350px;
+  background: rgb(187, 217, 255);
+}
+
+a:link { text-decoration: none; }
+
+.no-link-style {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
