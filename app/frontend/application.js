@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-
+import "popper"
+import "bootstrap"
 // require("bootstrap/dist/js/bootstrap")
 

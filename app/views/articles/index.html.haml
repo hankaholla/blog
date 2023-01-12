@@ -1,30 +1,43 @@
-%div.container.pt-5.position-absolute.top-0.start-50.translate-middle-x
-  %h1 Welcome to my blog!
-  %p.small 
-    This blog has 
-    %mark #{Article.public_count} 
-    articles and counting!
+
+%header.masthead      
+  .container.position-relative.px-4.px-lg-5
+    .row.gx-4.gx-lg-5.justify-content-center
+      .col
+        -# -md-10.col-lg-8.col-xl-7
+        .site-heading
+          %h1 Welcome to my blog!
+          %span.subheading This blog has #{Article.public_count} articles and counting!
+
+%div.container
+  -# %div.container
+  -#   -# .pt-5.position-absolute.top-0.start-50.translate-middle-x
+  -#   %h1 Welcome to my blog!
+  -#   %p.small 
+  -#     This blog has 
+  -#     %mark #{Article.public_count} 
+  -#     articles and counting!
 
 
-%div
-  - if user_signed_in? 
-    %div 
-      Welcome #{current_user.first_name}
-    = button_to "Sign out", destroy_user_session_path, method: :delete 
-  - else
-    = button_to "Sign in", new_user_session_path
-    = link_to "Sign up", new_user_registration_path
+  %div
+    - if user_signed_in? 
+      %div 
+        Welcome #{current_user.first_name}
+      = button_to "Sign out", destroy_user_session_path, method: :delete 
+    - else
+      = button_to "Sign in", new_user_session_path
+      = link_to "Sign up", new_user_registration_path
 
 
-%div.container.position-absolute.top-50.start-50.translate-middle 
-  %ul.list-group
-    - @articles.each do |article|
-      - unless article.archived?
-        %li.list-group-item.list-group-item-action
-          = link_to article.title, article
-        
--# = link_to "New Article", new_article_path
+  %div.container
+    -# .position-absolute.top-50.start-50.translate-middle 
+    %ul.list-group
+      - @articles.each do |article|
+        - unless article.archived?
+          %li.list-group-item.list-group-item-action
+            = link_to article.title, article
+          
+  -# = link_to "New Article", new_article_path
 
-%div.container.position-absolute.bottom-0.start-50.translate-middle-x
-  %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
+  %div.container.position-absolute.bottom-0.start-50.translate-middle-x
+    %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
   

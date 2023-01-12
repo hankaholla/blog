@@ -1,8 +1,8 @@
 class PolyLikesController < ApplicationController
 
     def create
-        current_user = User.find(like_params[:user_id])
-        @like = current_user.poly_likes.new(like_params)
+        user = User.find(current_user.id)    #(like_params[:user_id])
+        @like = user.poly_likes.new(like_params)
         
         if @like.save
             if @like.likeable_type == "Article"
@@ -17,7 +17,7 @@ class PolyLikesController < ApplicationController
 
     private
     def like_params
-        params.require(:poly_like).permit(:user_id, :likeable_id, :likeable_type)
+        params.require(:poly_like).permit(:likeable_id, :likeable_type)  #:user_id, 
     end
     
   end
