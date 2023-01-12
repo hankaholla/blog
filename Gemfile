@@ -58,6 +58,8 @@ gem "cancancan"
 gem "kaminari"
 gem 'bootstrap5-kaminari-views'
 
+gem "bootstrap_form", "~> 5.1"
+
 
 # Use Sass to process CSS
 gem "sassc-rails"

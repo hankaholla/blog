@@ -1,15 +1,11 @@
-= form_with model: [ @article, @article.comments.build ] do |form|
+= bootstrap_form_with model: [ @article, @article.comments.build ] do |form|
+  -# %p
+  -#   = form.label 'Commenter\'s name'
+  -#   %br/
+  -#   = form.select :user_id, options_for_select(users)
   %p
-    = form.label 'Commenter\'s name'
-    %br/
-    = form.select :user_id, options_for_select(users)
+    = form.text_area :body, label: 'Your comment'
   %p
-    = form.label :body
-    %br/
-    = form.text_area :body
-  %p
-    = form.label :status
-    %br/
     = form.select :status, ['public', 'private', 'archived'], selected: 'public'
   %p
     = form.submit

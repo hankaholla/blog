@@ -9,10 +9,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    super
-    flash[:notice] = "Your have successfully signed in."
-  end
+  # def create
+  #   super
+  #   flash[:notice] = "Your have successfully signed in."
+  # end
 
   # DELETE /resource/sign_out
   # def destroy

@@ -1,19 +1,20 @@
-%div.container.position-absolute.top-50.start-50.translate-middle.text-center
+%div.container.position-absolute.top-50.start-50.translate-middle
   %h2.pb-3 Please sign in
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
-      = f.label :email
+      -# = f.label :email
       %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", floating: true
     .field
-      = f.label :password
+      -# = f.label :password
       %br/
-      = f.password_field :password, autocomplete: "current-password"
+      = f.password_field :password, autocomplete: "current-password",floating: true, help: 'A good password should be at least six characters long'
     - if devise_mapping.rememberable?
       .field
-        = f.check_box :remember_me
-        = f.label :remember_me
+        = f.check_box :remember_me, switch: true
+        -# = f.label :remember_me
+
     .actions
-      = f.submit "Sign in"
+      = f.submit "Sign in", class: "btn btn-success"
   = render "devise/shared/links"
 

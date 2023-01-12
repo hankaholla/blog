@@ -75,6 +75,9 @@ GEM
     bootstrap5-kaminari-views (0.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bootstrap_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     builder (3.2.4)
     cancancan (3.4.0)
     capybara (3.38.0)
@@ -265,6 +268,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap5-kaminari-views
+  bootstrap_form (~> 5.1)
   cancancan
   capybara
   debug
