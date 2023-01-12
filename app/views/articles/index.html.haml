@@ -16,10 +16,12 @@
     = button_to "Sign in", new_user_session_path
     = link_to "Sign up", new_user_registration_path
 
+%div.container.pt-3.pb-5
+  %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
 
 %div.container
   %div.row
-    %div.col.pb-4.justify-center
+    %div.col.pb-5.justify-center
       -# %ul.list-group
       - @articles.each do |article|
         - unless article.archived?
@@ -28,14 +30,15 @@
             %div
               %h3.no-link-style.mt-5= article.title
               %h5.no-link-style #{author.first_name} #{author.last_name}
-              %div.no-link-style.pl-2.fakeimg
+              %div.no-link-style.pl-2.pb-4.fakeimg
                 Cover Image
-          
-          -# %li.list-group-item.list-group-item-action
-          -# = link_to article.title, article
-        
+  
+  %div.row.pb-5.justify-content-center  
+    =paginate @articles, theme: 'bootstrap-5'
+-# %li.list-group-item.list-group-item-action
+-# = link_to article.title, article
+
   -# = link_to "New Article", new_article_path
 
-%div.container.pt-3.pb-5
-  %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
+
   

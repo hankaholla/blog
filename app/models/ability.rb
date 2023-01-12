@@ -12,6 +12,7 @@ class Ability
     can :read, Article, user: user
     can :update, Article, user: user
     can :edit, Article, user: user
+    can :create, Article, user: user
   end
 end
 

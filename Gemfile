@@ -55,6 +55,10 @@ gem "devise"
 gem "cancancan"
 
 
+gem "kaminari"
+gem 'bootstrap5-kaminari-views'
+
+
 # Use Sass to process CSS
 gem "sassc-rails"
 

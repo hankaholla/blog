@@ -1,5 +1,9 @@
 class Article < ApplicationRecord
+    paginates_per 5
+
     include Visible
+
+    
 
     has_many :comments, dependent: :destroy
     has_many :poly_likes, as: :likeable
