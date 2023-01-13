@@ -22,7 +22,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user_id = current_user.id
+    @article.user_id = current_user.id      #priradi ako autora prihlaseneho pouzivatela
+
     if @article.save
       redirect_to @article
     else
@@ -58,14 +59,11 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :status) #ktore parametre su povolene
+    params.require(:article).permit(:title, :body, :status, :cover_photo) #ktore parametre su povolene
   end
 
   def all_users_form
     users_array = User.all.map { |u|  [u.first_name, u.id] }.to_h
-
-    # users_array = users_array.map{ |n, i| {"first_name": n, "id": i}}
-    # users_array = users_array.collect{|u| [u[:first_name], u[:id]]}
   end
 
 end

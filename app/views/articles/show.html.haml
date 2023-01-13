@@ -1,4 +1,6 @@
 %h1= @article.title
+- if @article.cover_photo.attached?
+  = image_tag @article.cover_photo, style: "width: 200px; display: block"
 %p= @article.body
 
 = render 'poly_likes/poly_like', likes: @article.poly_likes
@@ -14,12 +16,14 @@
 = link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
 
 = render 'poly_likes/form', likeable_model: @article, users: @users, record_type: "Article", record_id: @article.id
-- my_like = PolyLike.find_by(user_id: current_user.id, likeable_id: @article.id)
-- if my_like 
-  = link_to "Remove my like", article_poly_like_path(@article, my_like), data: { |
-        turbo_method: :delete,                           |
-        turbo_confirm: "Are you sure?"                   |
-      }                                                  |
+
+- if current_user
+  - my_like = PolyLike.find_by(user_id: current_user.id, likeable_id: @article.id)
+  - if my_like 
+    = link_to "Remove my like", article_poly_like_path(@article, my_like), data: { |
+          turbo_method: :delete,                           |
+          turbo_confirm: "Are you sure?"                   |
+        }                                                  |
 
 %h2 Comments
 = render @article.comments

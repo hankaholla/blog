@@ -21,6 +21,24 @@
     = form.label :status 
     %br/
     = form.select :status, ['public', 'private', 'archived'], {}, { class: "form form-group form-control" }
+  
+  %div.mb-3.ms-5
+    -if article.cover_photo.attached?
+      = image_tag article.cover_photo, style: "width: 200px; display: block"
+    
+    = form.label :cover_photo
+    %br/
+    = form.file_field :cover_photo
+
+  %div.mb-3.ms-5
+    = form.submit
+  
+
+
+
+
+
+
 
   -# %div.mb-3.ms-5
   -#   = form.label :user_id, 'Author\'s first name'
@@ -31,6 +49,3 @@
   -#   -# - selected_user = users.find{ |u| u[1] == article.user_id}
   -#   -# - selected_index = users.index(selected_user)
   -#   = form.select :user_id, options_for_select(users, selected: article.user_id, )
-  %div.mb-3.ms-5
-    = form.submit
-  

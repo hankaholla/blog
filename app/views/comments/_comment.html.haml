@@ -10,9 +10,6 @@
   = render 'poly_likes/poly_like', likes: comment.poly_likes
 
   %p
-    -# polymorphic_url([blog, post], anchor: 'my_anchor')
-    -# # => "http://example.com/blogs/1/posts/1#my_anchor"
-    -# = render 'poly_likes/form', likeable_model: comment.article, users: @users, type: "Comment"
     = render 'poly_likes/form', likeable_model: comment.article, users: @users, record_type: "Comment", record_id: comment.id
   %p
     = link_to "Destroy Comment", [comment.article, comment], data: { |
@@ -20,5 +17,6 @@
         turbo_confirm: "Are you sure?"                               |
       }                                                              |
   %p
-  - if comment.user_id == current_user.id 
+
+  - if current_user && comment.user_id == current_user.id 
     = link_to "Edit my comment", edit_article_comment_path(comment.article, comment)           
