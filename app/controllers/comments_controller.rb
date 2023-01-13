@@ -14,6 +14,21 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+
+    if @comment.update(comment_params)
+      redirect_to @comment.article
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
@@ -23,7 +38,7 @@ class CommentsController < ApplicationController
   
   private
   def comment_params
-    params.require(:comment).permit(:body, :status)
+    params.require(:comment).permit(:id, :body, :status)
   end
 
 end

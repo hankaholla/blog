@@ -15,6 +15,12 @@ class PolyLikesController < ApplicationController
         end
     end
 
+    def destroy
+        @article = Article.find(params[:id])
+        puts params
+        # redirect_to root_path, status: :see_other
+    end
+
     private
     def like_params
         params.require(:poly_like).permit(:likeable_id, :likeable_type)  #:user_id, 

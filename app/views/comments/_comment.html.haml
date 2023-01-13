@@ -19,3 +19,6 @@
         turbo_method: :delete,                                       |
         turbo_confirm: "Are you sure?"                               |
       }                                                              |
+  %p
+  - if comment.user_id == current_user.id 
+    = link_to "Edit my comment", edit_article_comment_path(comment.article, comment)           

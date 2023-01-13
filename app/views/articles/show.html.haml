@@ -13,14 +13,23 @@
 %h2 Author of this article: 
 = link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
 
--# %p User that wants to like this article:
--# = select_tag :user_id, options_for_select(@users)
-
--# %h2= link_to "Like this article", article_poly_likes_path(@article), method: :post
 = render 'poly_likes/form', likeable_model: @article, users: @users, record_type: "Article", record_id: @article.id
+- my_like = PolyLike.find_by(user_id: current_user.id, likeable_id: @article.id)
+- if my_like 
+  = link_to "Remove my like", article_poly_like_path(@article, my_like), data: { |
+        turbo_method: :delete,                           |
+        turbo_confirm: "Are you sure?"                   |
+      }                                                  |
 
 %h2 Comments
 = render @article.comments
 %h2 Add a comment:
 = render 'comments/form', users: @users
 
+
+
+
+
+
+-# %p User that wants to like this article:
+-# = select_tag :user_id, options_for_select(@users)
