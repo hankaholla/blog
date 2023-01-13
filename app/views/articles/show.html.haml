@@ -1,6 +1,6 @@
 %h1= @article.title
 - if @article.cover_photo.attached?
-  = image_tag @article.cover_photo, style: "width: 200px; display: block"
+  = image_tag @article.cover_photo.variant(resize: "100x100")
 %p= @article.body
 
 = render 'poly_likes/poly_like', likes: @article.poly_likes
