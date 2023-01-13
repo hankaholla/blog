@@ -1,13 +1,9 @@
 class ArticlesController < ApplicationController
 
-  # http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
   # authorize_resource
 
   def index
-    # @posts = Post.order(:title).page params[:page]
     @articles = Article.page(params[:page])
-    # @articles = Article.order(:title).page params[:page]
-  
   end
 
   def show
@@ -33,16 +29,13 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    # @users = all_users_form
     authorize! :edit, @article
     render :edit
-    # @user = User.find(@article.user_id)
   end
 
   def update
     @article = Article.find(params[:id])
 
-    # can? :update, @article # => true
     if @article.update(article_params)
       redirect_to @article
     else

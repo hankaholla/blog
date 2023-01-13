@@ -1,43 +1,22 @@
--# = puts users
--# = puts article.user_id
 
-= form_with model: article do |form|
-  %div.mb-3.mt-3.ms-5
-    = form.label :title, {class: "form-label pl-5"}
-    %br/
-    = form.text_field :title
-    - article.errors.full_messages_for(:title).each do |message|
-      %div= message
+= bootstrap_form_for(article) do |form|
+  = form.text_field :title
+  - article.errors.full_messages_for(:title).each do |message|
+    %div= message
 
-  %div.mb-3.ms-5
-    = form.label :body
-    %br/
-    = form.text_area :body
-    %br/
-    - article.errors.full_messages_for(:body).each do |message| 
-      %div= message 
+  = form.text_area :body
+  - article.errors.full_messages_for(:body).each do |message| 
+    %div= message 
 
-  %div.mb-3.ms-5
-    = form.label :status 
-    %br/
-    = form.select :status, ['public', 'private', 'archived'], {}, { class: "form form-group form-control" }
+  = form.select :status, ['public', 'private', 'archived'], {}, { class: "form form-group form-control" }
   
   %div.mb-3.ms-5
     -if article.cover_photo.attached?
       = image_tag article.cover_photo, style: "width: 200px; display: block"
-    
-    = form.label :cover_photo
-    %br/
     = form.file_field :cover_photo
 
-  %div.mb-3.ms-5
-    = form.submit
+  = form.submit
   
-
-
-
-
-
 
 
   -# %div.mb-3.ms-5
