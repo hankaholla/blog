@@ -16,9 +16,10 @@ class PolyLikesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
-        puts params
-        # redirect_to root_path, status: :see_other
+        @article = Article.find_by(id: params[:article_id])
+        @like = PolyLike.find(params[:id])
+        @like.destroy
+        redirect_to article_path(@article), status: :see_other
     end
 
     private

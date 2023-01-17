@@ -1,29 +1,29 @@
-# likeable_array_type = ['Article', 'Comment']
+likeable_array_type = ['Article', 'Comment']
 
-# 30.times do 
-#   count = User.count
-#   random_offset = rand(count)
-#   random_user = User.offset(random_offset).first
+30.times do 
+  count = User.count
+  random_offset = rand(count)
+  random_user = User.offset(random_offset).first
   
-#   selected_type = likeable_array_type.sample
+  selected_type = likeable_array_type.sample
 
-#   if selected_type == 'Article'
-#     count2 = Article.count
-#     random_offset2 = rand(count2)
-#     selected_id = Article.offset(random_offset2).first.id
-#   else 
-#     count2 = Comment.count
-#     random_offset2 = rand(count2)
-#     selected_id = Comment.offset(random_offset2).first.id
-#   end
+  if selected_type == 'Article'
+    count2 = Article.count
+    random_offset2 = rand(count2)
+    selected_id = Article.offset(random_offset2).first.id
+  else 
+    count2 = Comment.count
+    random_offset2 = rand(count2)
+    selected_id = Comment.offset(random_offset2).first.id
+  end
 
-#   PolyLike.create(
-#     user_id: random_user.id,
-#     likeable_type: selected_type,
-#     likeable_id: selected_id,
-#   )
+  PolyLike.create(
+    user_id: random_user.id,
+    likeable_type: selected_type,
+    likeable_id: selected_id,
+  )
 
-# end
+end
 
 
 

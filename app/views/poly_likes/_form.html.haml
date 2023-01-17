@@ -1,4 +1,9 @@
 = bootstrap_form_with model: [ likeable_model, likeable_model.poly_likes.build ] do |form|
   = form.hidden_field :likeable_id, value: record_id
   = form.hidden_field :likeable_type, value: record_type
-  = form.primary "Like"
+  -already_liked = PolyLike.find_by(user_id: current_user.id, likeable_id: record_id)
+  -if already_liked
+    - like = PolyLike.find_by(likeable_id: likeable_model.id, user_id: current_user.id)
+    = link_to "Dislike", article_poly_like_path(likeable_model, like), data: { turbo_method: :delete}, class: "btn btn-primary"
+  -else
+    = form.primary "Like"

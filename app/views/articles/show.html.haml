@@ -1,6 +1,6 @@
 %h1= @article.title
 - if @article.cover_photo.attached?
-  = image_tag @article.cover_photo.variant(resize: "100x100")
+  = image_tag @article.cover_photo, style: "width: 200px; display: block"
 %p= @article.body
 
 = render 'poly_likes/poly_like', likes: @article.poly_likes
@@ -15,7 +15,7 @@
 %h2 Author of this article: 
 = link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
 
-= render 'poly_likes/form', likeable_model: @article, users: @users, record_type: "Article", record_id: @article.id
+= render 'poly_likes/form', likeable_model: @article, record_type: "Article", record_id: @article.id
 
 - if current_user
   - my_like = PolyLike.find_by(user_id: current_user.id, likeable_id: @article.id)

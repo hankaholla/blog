@@ -4,5 +4,4 @@ import "controllers"
 
 import "popper"
 import "bootstrap"
-// require("bootstrap/dist/js/bootstrap")
 
