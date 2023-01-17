@@ -1,17 +1,15 @@
-%div.container
-    %header.py-3
-        %div.row.flex-nowrap.justify-content-center.align-items-center
-            - if user_signed_in? 
-                %div.col-2
-                    Welcome #{current_user.first_name}
-                %div.col-2
-                    = button_to "Sign out", destroy_user_session_path, method: :delete 
-            - else
-                %div.col-2
-                    = button_to "Sign in", new_user_session_path
-                %div.col-2
-                    = button_to "Sign up", new_user_registration_path
-            %div.col-4.text-center
-                %h1 The blue blog
-            %div.col-4.d-flex.justify-content-end
-                %a{:href => "#"} Subscribe!
+
+%header
+    %div.row.flex-nowrap.justify-content-center.align-items-center
+        %div.col-4.text-center
+            %h1 The blue blog
+        - if user_signed_in? 
+            %div.col-2.flex-shrink-0
+                Welcome #{current_user.first_name}
+            %div.col-2
+                = button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary" 
+        - else
+            %div.col-2
+                = button_to "Sign in", new_user_session_path, data: { turbo: false }
+            %div.col-2
+                = button_to "Sign up", new_user_registration_path, class: "btn btn-primary"  

@@ -24,3 +24,30 @@ a:link { text-decoration: none; }
   align-items: center;
   height: 500px;
 }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr auto;
+  grid-gap: 1em;
+  padding: 30px;
+}
+
+header, nav {
+  grid-column: 1/4;
+}
+
+.articles {
+  /* Start on Row 2 */
+  grid-row: 3;
+  /* Start on the second column line and stop at the third column line */
+  grid-column: 1 / 4;
+}
+

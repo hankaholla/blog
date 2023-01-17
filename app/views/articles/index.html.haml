@@ -1,33 +1,28 @@
+-# %div.wrapper
+%div.grid
+  = render 'shared/header' 
+  = render 'shared/navigation' 
+  %div.container.pt-3.pb-5
+    %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
 
--# %header.masthead      
--#   .container.position-relative.px-4.px-lg-5
--#     .row.gx-4.gx-lg-5.justify-content-center.text-center
--#       .col-md-10.col-lg-8.col-xl-7
--#         .site-heading
--#           %h3 Welcome to my blog!
--#           %span.subheading This blog has #{Article.public_count} articles and counting!
-
-%div.container.pt-3.pb-5
-  %a.btn.btn-outline-primary{ href: new_article_path }= 'New article'
-
-%div.container
-  %div.row
-    %div.col.pb-5.justify-center
-      -# %ul.list-group
-      - @articles.each do |article|
-        - unless article.archived?
-          - author = User.find(article.user_id)
-          = link_to article do
-            %div
-              %h3.no-link-style.mt-5= article.title
-              %h5.no-link-style #{author.first_name} #{author.last_name}
+  %div.col
+    %div.row
+    
+      %div.col.pb-5.justify-center
+        -# %ul.list-group
+        - @articles.each do |article|
+          - unless article.archived?
+            - author = User.find(article.user_id)
+            = link_to article do
               %div
-                -if article.cover_photo.attached?
-                  = image_tag article.cover_photo, style: "width: 200px; display: block"
-  
-  
-  %div.row.pb-5.justify-content-center  
-    =paginate @articles, theme: 'bootstrap-5'
+                %h3.no-link-style.mt-5= article.title
+                %h5.no-link-style #{author.first_name} #{author.last_name}
+                %div
+                  -if article.cover_photo.attached?
+                    = image_tag article.cover_photo, style: "width: 500px"
+    
+    %div.row.pb-5.justify-content-center  
+      =paginate @articles, theme: 'bootstrap-5'
   
 -# %li.list-group-item.list-group-item-action
 -# = link_to article.title, article
