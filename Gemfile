@@ -58,6 +58,10 @@ gem "cancancan"
 gem "kaminari"
 gem 'bootstrap5-kaminari-views'
 
+#Generating pdfs
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
+
 gem "bootstrap_form", "~> 5.1"
 
 

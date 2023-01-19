@@ -22,10 +22,6 @@ class PolyLikesController < ApplicationController
         redirect_to article_path(@article), status: :see_other
     end
 
-    def export
-        
-    end
-
     private
     def like_params
         params.require(:poly_like).permit(:likeable_id, :likeable_type)  #:user_id, 

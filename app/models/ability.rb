@@ -6,6 +6,7 @@ class Ability
   def initialize(user)
 
     can :read, Article
+    can :print, Article
 
     return unless user.present?
 
@@ -13,6 +14,7 @@ class Ability
     can :update, Article, user: user
     can :edit, Article, user: user
     can :create, Article, user: user
+    can :destroy, Article, user: user
   end
 end
 
