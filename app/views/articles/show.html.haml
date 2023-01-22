@@ -1,34 +1,45 @@
-= render 'shared/header' 
-= render 'shared/navigation'
-%h1= @article.title
-- if @article.cover_photo.attached?
-  = image_tag @article.cover_photo, style: "width: 200px; display: block"
-%p= @article.body
+%div.p-3
 
-= render 'poly_likes/poly_like', likes: @article.poly_likes
+  = render 'shared/header'
+  = render 'shared/navigation'
+  %h1= @article.title
+  - if @article.cover_photo.attached?
+    = image_tag @article.cover_photo, style: "width: 200px; display: block"
+  %p= @article.body
 
-%ul
-  %li= link_to "Edit", edit_article_path(@article)
-  %li= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}
-  %li= link_to "Print article to PDF", print_article_path, data: { turbo_method: :post}
+  = render 'poly_likes/poly_like', likes: @article.poly_likes
 
-%h2 Author of this article: 
-= link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
+  %div.p-2
+    %div.row
+      %div.col-1.justify-content-center
+        = link_to "Edit", edit_article_path(@article), class: "btn btn-secondary"
+      %div.col-1.justify-content-center
+        = link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-secondary"
+      %div.col-2.justify-content-center
+        = link_to "Print article to PDF", print_article_path, data: { turbo_method: :post}, class: "btn btn-secondary"
 
-= render 'poly_likes/form', likeable_model: @article, record_type: "Article", record_id: @article.id
+  %h2 Author of this article:
+  = link_to @article.user.first_name + ' ' + @article.user.last_name, user_path(@article.user)
 
-- if current_user
-  - my_like = PolyLike.find_by(user_id: current_user.id, likeable_id: @article.id)
-  - if my_like 
-    = link_to "Remove my like", article_poly_like_path(@article, my_like), data: { |
-          turbo_method: :delete,                           |
-          turbo_confirm: "Are you sure?"                   |
-        }                                                  |
+  = render 'poly_likes/form', likeable_model: @article, record_type: "Article", record_id: @article.id
 
-%h2 Comments
-= render @article.comments
-%h2 Add a comment:
-= render 'comments/form', users: @users
+  - if current_user
+    - my_like = PolyLike.find_by(user_id: current_user.id, likeable_id: @article.id)
+    - if my_like
+      = link_to "Remove my like", article_poly_like_path(@article, my_like), data: { |
+            turbo_method: :delete,                           |
+            turbo_confirm: "Are you sure?"                   |
+          }                                                  |
+
+  %div.pt-3
+    - if @article.comments != []
+      %h2 Comments
+      = render @article.comments
+    - else
+      %h3 No comments yet
+  %div.pt-3
+    %h2 Add a comment:
+    = render 'comments/form', users: @users
 
 
 

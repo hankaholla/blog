@@ -10,6 +10,6 @@
                 = button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary" 
         - else
             %div.col-2
-                = button_to "Sign in", new_user_session_path, data: { turbo: false }
+                = button_to "Sign in", new_user_session_path, data: { turbo: false }, class: "btn btn-primary"
             %div.col-2
-                = button_to "Sign up", new_user_registration_path, class: "btn btn-primary"  
+                = button_to "Sign up", new_user_registration_path, method: :get, data: { turbo: false }, class: "btn btn-primary" # preco tu musim specifikovat method get, nie je by default get vsade?

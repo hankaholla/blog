@@ -1,4 +1,4 @@
 = bootstrap_form_with model: [ @article, @article.comments.build ] do |form|
   = form.text_area :body, label: 'Your comment'
   = form.select :status, ['public', 'private', 'archived'], selected: 'public'
-  = form.submit
+  = form.submit "Create comment", class: "btn btn-success"
