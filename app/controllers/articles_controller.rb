@@ -56,20 +56,19 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     # authorize! :print, @article
     pdf_html = ActionController::Base.new.render_to_string(template: 'articles/show', layout: 'pdf', locals: {:@article => @article})
-    pdf = WickedPdf.new.pdf_from_string(pdf_html)
-    save_to_file pdf, filename: 'file.pdf'
+    # pdf = WickedPdf.new.pdf_from_string(pdf_html)
+    # save_to_file pdf, filename: 'file.pdf'
 
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-    #     render pdf: "Article_#{params[:id]}",
-    #            template: "articles/show.html.haml",
-    #           #  locals: {article: @article},
-    #           #  formats: [:html],
-    #            layout: "pdf",
-    #            :save_to_file => Rails.root.join('pdfs', "Article_#{params[:id]}.pdf")
-    #   end
-    # end
+    respond_to do |format|
+      format.pdf do
+        render pdf: "Article_#{params[:id]}",
+               template: 'articles/show',
+               locals: { article: @article },
+               formats: [:html],
+               layout: "pdf",
+               :save_to_file => Rails.root.join('pdfs', "Article_#{params[:id]}.pdf")
+      end
+    end
   end
 
   private

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :articles do
 
     member do
-      post "print"
+      get "print", format: 'pdf'
     end
 
     resources :comments do
